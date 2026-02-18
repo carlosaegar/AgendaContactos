@@ -1,13 +1,31 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+/*8. Agenda de contactos con varios teléfonos por persona
+Problema:
+Permitir que cada nombre de contacto tenga varios números de teléfono
+asociados.
+ */
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
-}
+public class AgendaContactos {
+    public static void main(String[] args) {
+        // Usamos un HashMap donde la clave es el nombre y el valor es una lista de teléfonos
+        Map<String, Set<String>> agenda = new HashMap<>();
+
+        //Agregar claves - valor
+        agregarContacto(agenda, "Ana", "123456");
+        agregarContacto(agenda, "Luis", "654321");
+        agregarContacto(agenda,"Maria",  "789456");
+        agregarContacto(agenda, "Ana", "111111");
+
+        for (String nombre : agenda.keySet()) {
+            System.out.println(nombre + " " + agenda.get(nombre));
+            }
+        }
+        public static void agregarContacto (Map<String, Set<String>> agenda, String nombre , String telefono) {
+            agenda.putIfAbsent(nombre, new HashSet<>());
+            agenda.get(nombre).add(telefono);
+        }
+
+    }
